@@ -1,4 +1,4 @@
-function! HilightCursorLineNr(mode)
+function! HighlightCursorLineNr(mode)
     let fg_color = 'NONE'
     let bg_color = 'NONE'
     let palette = g:airline#themes#{g:airline_theme}#palette
@@ -24,5 +24,7 @@ function! HilightCursorLineNr(mode)
     return ''
 endfunction
 
-let g:airline_section_a .= '%{HilightCursorLineNr(airline#parts#mode())}'
-"g:airline#themes#jellybeans#palette.normal['airline_a'][0]
+augroup HighlightCursorLine
+    autocmd!
+    autocmd VimEnter * let g:airline_section_a .= '%{HighlightCursorLineNr(airline#parts#mode())}' | AirlineRefresh
+augroup END
